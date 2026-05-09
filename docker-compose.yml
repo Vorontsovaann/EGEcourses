@@ -1,15 +1,25 @@
+version: '3.8'
+
 services:
   pz3-api:
     image: Vorontsovaann/egecourses:latest
     container_name: pz3-container-v18
     ports:
-      - "${HOST_PORT}:${CONTAINER_PORT}"  # Берём значения из .env файла
+      - "8018:8080"
     environment:
-      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}  # Берём значение из .env
+      - ASPNETCORE_ENVIRONMENT=Production
     restart: unless-stopped
+    
+    volumes:
+      - sqlite_data:/app
+
     healthcheck:
-  test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/api/data"]
-  interval: 30s
-  timeout: 10s
-  retries: 3
-  start_period: 15s
+      test: ["CMD", "ps", "-aux"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  sqlite_data:
+    driver: local
