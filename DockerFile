@@ -1,27 +1,19 @@
-# Стадия 1: Сборка (build)
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Стадия 1: Сборка
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-# Копируем файл проекта и восстанавливаем зависимости
 COPY ["PZ3.csproj", "./"]
 RUN dotnet restore "PZ3.csproj"
 
-# Копируем весь исходный код и публикуем в режиме Release
 COPY . .
 RUN dotnet publish "PZ3.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Стадия 2: Запуск (runtime)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+# Стадия 2: Запуск
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
 
-# Копируем только скомпилированные файлы из стадии сборки
 COPY --from=build /app/publish .
 
-# Указываем порт, на котором будет слушать приложение внутри контейнера
 EXPOSE 8080
-
-# Переменная окружения для привязки к порту 8080 и отключения HTTPS-редиректа
 ENV ASPNETCORE_URLS=http://+:8080
-
-# Точка входа для запуска приложения
 ENTRYPOINT ["dotnet", "PZ3.dll"]
