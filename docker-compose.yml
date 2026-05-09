@@ -5,9 +5,9 @@ services:
     image: Vorontsovaann/egecourses:latest
     container_name: pz3-container-v18
     ports:
-      - "8018:8080"
+      - "${HOST_PORT}:${CONTAINER_PORT}" 
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
     restart: unless-stopped
     
     volumes:
