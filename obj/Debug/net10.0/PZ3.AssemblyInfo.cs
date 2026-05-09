@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PZ3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bda31b0590d3b322ea85d8984a29cd458c9206b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5cf0e0d93975d5e8a54097a806b6b8c2ae099bcc")]
 [assembly: System.Reflection.AssemblyProductAttribute("PZ3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PZ3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
